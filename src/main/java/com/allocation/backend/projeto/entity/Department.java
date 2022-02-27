@@ -26,10 +26,10 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name", unique = true, nullable = false,length = 11)
+	@Column(name = "name", unique = true, nullable = false,length = 50)
 	private String name;
 	
-	@Column(name = "sigla", unique = true, nullable = false,length = 11)
+	@Column(name = "sigla", unique = true, nullable = false,length = 5)
 	@Size(min = 2)
 	private String sigla;
 	

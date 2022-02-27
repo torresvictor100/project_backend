@@ -13,5 +13,6 @@ import com.allocation.backend.projeto.entity.Department;
 public interface DepartamentRepository extends JpaRepository<Department, Long>{
 
 	List<Department> findByNameContainingIgnoreCase(String name);
-
+	
+	List<Department> findByName(String name);
 }
