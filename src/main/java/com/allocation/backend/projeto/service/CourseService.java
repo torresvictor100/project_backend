@@ -49,11 +49,17 @@ public class CourseService {
 
 	}
 
-	public Course findBySigla(Long id) {
+	public boolean findBySigla(String sigla) {
+		List<Course> courses = courseRepository.findAll();
+		boolean result = false;
+		for (Course specificSigla : courses) {
+
+			if (specificSigla.getSigla().equalsIgnoreCase(sigla)) {
+				return result = true;
 		
-		
-		
-		
+			}
+		}
+		return result;
 	}
 
 	
