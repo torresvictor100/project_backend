@@ -37,9 +37,9 @@ public class CourseService {
 	public boolean findByName(String name) {
 		List<Course> courses = courseRepository.findAll();
 		boolean result = false;
-		for (Course name1 : courses) {
+		for (Course specificName : courses) {
 
-			if (name1.getName().equalsIgnoreCase(name)) {
+			if (specificName.getName().equalsIgnoreCase(name)) {
 				return result = true;
 			
 			}
@@ -50,10 +50,15 @@ public class CourseService {
 	}
 
 	public Course findBySigla(Long id) {
-		// ...//
-		return null;
+		
+		
+		
+		
 	}
 
+	
+	
+	
 	public Course save(Course course) {
 		course.setId(null);
 		return saveInternal(course);
