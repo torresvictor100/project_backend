@@ -12,43 +12,53 @@ import com.allocation.backend.projeto.repository.CourseRepository;
 
 @Service
 public class CourseService {
-	
+
 	private final CourseRepository courseRepository;
-	 private final AllocationRepository allocationRepository;
-	
-	 public CourseService(CourseRepository courseRepository, AllocationRepository allocationRepository) {
-	        super();
-	        this.courseRepository = courseRepository;
-	        this.allocationRepository = allocationRepository;
-	    }
-	
-	public List<Course> findAll(String name) {
-		 if (name == null) {
-	            return courseRepository.findAll();
-	        } else {
-	            return courseRepository.findByNameContainingIgnoreCase(name);
-	        }
+	private final AllocationRepository allocationRepository;
+
+	public CourseService(CourseRepository courseRepository, AllocationRepository allocationRepository) {
+		super();
+		this.courseRepository = courseRepository;
+		this.allocationRepository = allocationRepository;
 	}
-	
+
+	public List<Course> findAll(String name) {
+		if (name == null) {
+			return courseRepository.findAll();
+		} else {
+			return courseRepository.findByNameContainingIgnoreCase(name);
+		}
+	}
+
 	public Course findById(Long id) {
 		return courseRepository.findById(id).orElse(null);
 	}
-	
-	public Department findByNome(Long id) {
-		//....//
+
+	public boolean findByName(String name) {
+		List<Course> courses = courseRepository.findAll();
+		boolean result = false;
+		for (Course name1 : courses) {
+
+			if (name1.getName().equalsIgnoreCase(name)) {
+				return result = true;
+			
+			}
+
+		}
+		return result;
+
+	}
+
+	public Course findBySigla(Long id) {
+		// ...//
 		return null;
 	}
-	
-	public Department findBySigla(Long id) {
-		//...//
-		return null;
-	}
-	
+
 	public Course save(Course course) {
 		course.setId(null);
 		return saveInternal(course);
 	}
-		
+
 	public Course update(Course course) {
 		Long id = course.getId();
 		if (id != null && courseRepository.existsById(id)) {
@@ -57,28 +67,28 @@ public class CourseService {
 			return null;
 		}
 	}
-	
+
 	public void deleteById(Long id) {
 		if (courseRepository.existsById(id)) {
 			courseRepository.deleteById(id);
 		}
 	}
-	
+
 	public void deleteAll() {
 		courseRepository.deleteAllInBatch();
 	}
-	
+
 	public void test() {
-		//....//
+		// ....//
 	}
-	
+
 	private Course saveInternal(Course course) {
-        course = courseRepository.save(course);
+		course = courseRepository.save(course);
 
-        List<Allocation> allocations = allocationRepository.findByCourseId(course.getId());
-        course.setAllocation(allocations);
+		List<Allocation> allocations = allocationRepository.findByCourseId(course.getId());
+		course.setAllocation(allocations);
 
-        return course;
+		return course;
 	}
 
 }
