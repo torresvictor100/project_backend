@@ -31,6 +31,22 @@ public class ProfessorServiceTest {
 		Professor professor = professorService.findById(id);
 		System.out.println(professor);
 	}
+	
+	@Test
+	public void findByName() {
+
+		String name = "Professor 10";
+		Professor professor = professorService.findByName(name);
+		System.out.println(professor);
+	}
+	
+	@Test
+	public void findByCpf() {
+
+		String cpf = "11111113111";
+		Professor professor = professorService.findByCpf(cpf);
+		System.out.println(professor);
+	}
 
 	@Test
 	public void findByDepartmentId() {

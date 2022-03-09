@@ -26,6 +26,19 @@ public class CourseServiceTest {
 		List<Course> course = courseService.findAll(null);
 		course.forEach(System.out::println);
 	}
+	@Test
+	public void findByName() {
+	String name = "test";
+	Course course = courseService.findByName(name);
+	System.out.println(course);
+	}
+	
+	@Test
+	public void findBySigla() {
+	String sigla = "teste";
+	Course course = courseService.findBySigla(sigla);
+	System.out.println(course);
+	}
 	
 	@Test
 	public void findById() {
