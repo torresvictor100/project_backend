@@ -36,6 +36,22 @@ public class DepartmentServiceTest {
 	}
 	
 	@Test
+	public void findByName() {
+
+		String name = "test";
+		Department departament = departmentService.findByName(name);
+		System.out.println(departament);
+	}
+	
+	@Test
+	public void findBySigla() {
+
+		String sigla = "test";
+		Department departament = departmentService.findBySigla(sigla);
+		System.out.println(departament);
+	}
+	
+	@Test
 	public void save() throws ParseException {
 
 		Department departament = new Department();
