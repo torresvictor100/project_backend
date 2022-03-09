@@ -35,14 +35,14 @@ public class DepartmentService {
 		return departmentRepository.findById(id).orElse(null);
 	}
 
-	public Department findByNome(Long id) {
-		// ....//
-		return null;
+	public Department findByName(String name) {
+		return departmentRepository.findByName(name).orElse(null);
+		
 	}
 
-	public Department findBySigla(Long id) {
-		// ...//
-		return null;
+	public Department findBySigla(String sigla) {
+		return departmentRepository.findBySigla(sigla).orElse(null);
+		
 	}
 
 	public Department save(Department departament) {

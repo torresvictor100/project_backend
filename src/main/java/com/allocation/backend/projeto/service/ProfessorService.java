@@ -42,11 +42,13 @@ public class ProfessorService {
 		return professorRepository.findById(id).orElse(null);
 	}
 	
-	public void findByNome() {
+	public Professor findByName(String name) {
+		return professorRepository.findByName(name).orElse(null);
 		
 	}
 	
-	public void findByCpf() {
+	public Professor findByCpf(String cpf) {
+		return professorRepository.findByCpf(cpf).orElse(null);
 		
 	}
 

@@ -33,34 +33,40 @@ public class CourseService {
 	public Course findById(Long id) {
 		return courseRepository.findById(id).orElse(null);
 	}
+	public Course findBySigla(String sigla) {
+		return courseRepository.findBySigla(sigla).orElse(null);
+	}
+	
+	public Course findByName(String name) {
+		return courseRepository.findByName(name).orElse(null);
+	}
+	//public boolean findByName(String name) {
+		//List<Course> courses = courseRepository.findAll();
+		//boolean result = false;
+		//for (Course specificName : courses) {
 
-	public boolean findByName(String name) {
-		List<Course> courses = courseRepository.findAll();
-		boolean result = false;
-		for (Course specificName : courses) {
-
-			if (specificName.getName().equalsIgnoreCase(name)) {
-				return result = true;
+			//if (specificName.getName().equalsIgnoreCase(name)) {
+				//return result = true;
 			
-			}
+			//}
 
-		}
-		return result;
+		//}
+		//return result;
 
-	}
+	//}
 
-	public boolean findBySigla(String sigla) {
-		List<Course> courses = courseRepository.findAll();
-		boolean result = false;
-		for (Course specificSigla : courses) {
+	//public boolean findBySigla(String sigla) {
+		//List<Course> courses = courseRepository.findAll();
+		//boolean result = false;
+		//for (Course specificSigla : courses) {
 
-			if (specificSigla.getSigla().equalsIgnoreCase(sigla)) {
-				return result = true;
+			//if (specificSigla.getSigla().equalsIgnoreCase(sigla)) {
+				//return result = true;
 		
-			}
-		}
-		return result;
-	}
+			//}
+		//}
+		//return result;
+	//}
 
 	
 	
@@ -84,7 +90,7 @@ public class CourseService {
 			courseRepository.deleteById(id);
 		}
 	}
-
+                      
 	public void deleteAll() {
 		courseRepository.deleteAllInBatch();
 	}
