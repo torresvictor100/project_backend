@@ -16,6 +16,5 @@ public enum Area {
 	public void setValorArea(int valorArea) {
 		this.valorArea = valorArea;
 	}
-	
-	
+
 }

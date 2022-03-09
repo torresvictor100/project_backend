@@ -16,23 +16,22 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 @Entity
 @Table(name = "course")
 public class Course {
-	
+
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "name", unique = true, nullable = false, length = 30)
 	private String name;
-	
+
 	@Column(name = "sigla", unique = true, nullable = false, length = 30)
 	@Size(min = 2)
 	private String sigla;
-	
+
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy = "course")
@@ -62,8 +61,6 @@ public class Course {
 		this.sigla = sigla;
 	}
 
-	
-	
 	public List<Allocation> getAllocation() {
 		return allocation;
 	}
@@ -76,7 +73,5 @@ public class Course {
 	public String toString() {
 		return "Curso [id=" + id + ", name=" + name + ", sigla=" + sigla + "]";
 	}
-	
-	
 
 }
