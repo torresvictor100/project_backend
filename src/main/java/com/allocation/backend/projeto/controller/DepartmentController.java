@@ -26,14 +26,14 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping(path = "/departments")
 public class DepartmentController {
-	
+
 	private final DepartmentService departmentService;
 
 	public DepartmentController(DepartmentService departmentService) {
 		super();
 		this.departmentService = departmentService;
 	}
-	
+
 	@ApiOperation(value = "Find all departments")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK") })
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,7 +42,7 @@ public class DepartmentController {
 		List<Department> departments = departmentService.findAll(name);
 		return new ResponseEntity<>(departments, HttpStatus.OK);
 	}
-	
+
 	@ApiOperation(value = "Find a department by id")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad Request"),
 			@ApiResponse(code = 404, message = "Not Found") })
@@ -56,7 +56,35 @@ public class DepartmentController {
 			return new ResponseEntity<>(department, HttpStatus.OK);
 		}
 	}
-	
+
+	@ApiOperation(value = "Find a department by name")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 404, message = "Not Found") })
+	@GetMapping(path = "/name/{department_name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Department> findByName(@PathVariable(name = "department_name") String name) {
+		Department department = departmentService.findByName(name);
+		if (department == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(department, HttpStatus.OK);
+		}
+	}
+
+	@ApiOperation(value = "Find a department by sigla")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 404, message = "Not Found") })
+	@GetMapping(path = "/sigla/{department_sigla}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Department> findBySigla(@PathVariable(name = "department_sigla") String sigla) {
+		Department department = departmentService.findBySigla(sigla);
+		if (department == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(department, HttpStatus.OK);
+		}
+	}
+
 	@ApiOperation(value = "Save a department")
 	@ApiResponses({ @ApiResponse(code = 201, message = "Created"), @ApiResponse(code = 400, message = "Bad Request") })
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
