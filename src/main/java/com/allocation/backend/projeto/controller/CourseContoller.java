@@ -56,6 +56,34 @@ public class CourseContoller {
 		}
 	}
 	
+	@ApiOperation(value = "Find a courses by name")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 404, message = "Not Found") })
+	@GetMapping(path = "/name/{course_name}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Course> findByName(@PathVariable(name = "course_name") String name) {
+		Course course = courseService.findByName(name);
+		if (course == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(course, HttpStatus.OK);
+		}
+	}
+	
+	@ApiOperation(value = "Find a courses by sigla")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 404, message = "Not Found") })
+	@GetMapping(path = "/sigla/{course_sigla}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Course> findBySigla(@PathVariable(name = "course_sigla") String sigla) {
+		Course course = courseService.findBySigla(sigla);
+		if (course == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(course, HttpStatus.OK);
+		}
+	}
+	
 	@ApiOperation(value = "Save a course")
 	@ApiResponses({ @ApiResponse(code = 201, message = "Created"), @ApiResponse(code = 400, message = "Bad Request") })
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
