@@ -73,6 +73,8 @@ public class CourseService {
 	
 	public Course save(Course course) {
 		course.setId(null);
+		course.setName(course.getName().replaceAll("[^a-Z1-9 ]", ""));
+		course.setName(course.getName().toLowerCase());
 		return saveInternal(course);
 	}
 
