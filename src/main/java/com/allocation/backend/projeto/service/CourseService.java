@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.allocation.backend.projeto.entity.Allocation;
 import com.allocation.backend.projeto.entity.Course;
-import com.allocation.backend.projeto.entity.Department;
 import com.allocation.backend.projeto.repository.AllocationRepository;
 import com.allocation.backend.projeto.repository.CourseRepository;
 
@@ -33,48 +32,46 @@ public class CourseService {
 	public Course findById(Long id) {
 		return courseRepository.findById(id).orElse(null);
 	}
+
 	public Course findBySigla(String sigla) {
 		return courseRepository.findBySigla(sigla).orElse(null);
 	}
-	
+
 	public Course findByName(String name) {
 		return courseRepository.findByName(name).orElse(null);
 	}
-	//public boolean findByName(String name) {
-		//List<Course> courses = courseRepository.findAll();
-		//boolean result = false;
-		//for (Course specificName : courses) {
+	// public boolean findByName(String name) {
+	// List<Course> courses = courseRepository.findAll();
+	// boolean result = false;
+	// for (Course specificName : courses) {
 
-			//if (specificName.getName().equalsIgnoreCase(name)) {
-				//return result = true;
-			
-			//}
+	// if (specificName.getName().equalsIgnoreCase(name)) {
+	// return result = true;
 
-		//}
-		//return result;
+	// }
 
-	//}
+	// }
+	// return result;
 
-	//public boolean findBySigla(String sigla) {
-		//List<Course> courses = courseRepository.findAll();
-		//boolean result = false;
-		//for (Course specificSigla : courses) {
+	// }
 
-			//if (specificSigla.getSigla().equalsIgnoreCase(sigla)) {
-				//return result = true;
-		
-			//}
-		//}
-		//return result;
-	//}
+	// public boolean findBySigla(String sigla) {
+	// List<Course> courses = courseRepository.findAll();
+	// boolean result = false;
+	// for (Course specificSigla : courses) {
 
-	
-	
-	
+	// if (specificSigla.getSigla().equalsIgnoreCase(sigla)) {
+	// return result = true;
+
+	// }
+	// }
+	// return result;
+	// }
+
 	public Course save(Course course) {
 		course.setId(null);
-		course.setName(course.getName().replaceAll("[^a-Z1-9 ]", ""));
-		course.setName(course.getName().toLowerCase());
+		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
+		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
 		return saveInternal(course);
 	}
 
@@ -92,7 +89,7 @@ public class CourseService {
 			courseRepository.deleteById(id);
 		}
 	}
-                      
+
 	public void deleteAll() {
 		courseRepository.deleteAllInBatch();
 	}

@@ -12,13 +12,13 @@ import com.allocation.backend.projeto.repository.ProfessorRepository;
 
 @Service
 public class ProfessorService {
-	
+
 	private final ProfessorRepository professorRepository;
 	private final DepartmentService departmentService;
 	private final AllocationRepository allocationRepository;
 
 	public ProfessorService(ProfessorRepository professorRepository, DepartmentService departmentService,
-			 AllocationRepository allocationRepository) {
+			AllocationRepository allocationRepository) {
 		super();
 		this.professorRepository = professorRepository;
 		this.departmentService = departmentService;
@@ -27,11 +27,11 @@ public class ProfessorService {
 	}
 
 	public List<Professor> findAll(String name) {
-		  if (name == null) {
-	            return professorRepository.findAll();
-	        } else {
-	            return professorRepository.findByNameContainingIgnoreCase(name);
-	        }
+		if (name == null) {
+			return professorRepository.findAll();
+		} else {
+			return professorRepository.findByNameContainingIgnoreCase(name);
+		}
 	}
 
 	public List<Professor> findByDepartmentId(Long departmentId) {
@@ -41,21 +41,21 @@ public class ProfessorService {
 	public Professor findById(Long id) {
 		return professorRepository.findById(id).orElse(null);
 	}
-	
+
 	public Professor findByName(String name) {
 		return professorRepository.findByName(name).orElse(null);
-		
+
 	}
-	
+
 	public Professor findByCpf(String cpf) {
 		return professorRepository.findByCpf(cpf).orElse(null);
-		
+
 	}
 
 	public Professor save(Professor professor) {
 		professor.setId(null);
 		professor.setCpf(professor.getCpf().replaceAll("[^a-Za-zA-Z]", ""));
-		professor.setName(professor.getName().toLowerCase());
+		professor.setName(professor.getName().replaceAll("[^a-z1-9 ]", ""));
 		return saveInternal(professor);
 	}
 
@@ -74,13 +74,11 @@ public class ProfessorService {
 		Department department = departmentService.findById(professor.getDepartmentId());
 		professor.setDepartment(department);
 
-		List<Allocation> allocations = allocationRepository.findByProfessorId(professor.getId()); //isso não entendi
+		List<Allocation> allocations = allocationRepository.findByProfessorId(professor.getId()); // isso não entendi
 		professor.setAllocations(allocations);
 
 		return professor;
 	}
-
-
 
 	public void deleteById(Long id) {
 		if (professorRepository.existsById(id)) {
@@ -91,11 +89,9 @@ public class ProfessorService {
 	public void deleteAll() {
 		professorRepository.deleteAllInBatch();
 	}
-	
+
 	public void teste() {
-		
+
 	}
-	
-	
 
 }
