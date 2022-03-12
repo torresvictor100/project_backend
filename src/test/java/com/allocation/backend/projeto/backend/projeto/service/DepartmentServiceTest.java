@@ -56,8 +56,8 @@ public class DepartmentServiceTest {
 
 		Department departament = new Department();
 		departament.setId(null);
-		departament.setName("test");
-		departament.setSigla("test");
+		departament.setName("test1");
+		departament.setSigla("test1");
 		departament.setArea(Area.EXATAS);
 		
 		departament = departmentService.save(departament);

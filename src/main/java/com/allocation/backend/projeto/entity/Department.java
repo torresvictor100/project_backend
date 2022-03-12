@@ -74,7 +74,6 @@ public class Department {
 	}
 	
 	
-	
 	public List<Professor> getProfessors() {
 		return professors;
 	}

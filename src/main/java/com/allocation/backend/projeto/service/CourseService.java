@@ -1,6 +1,7 @@
 package com.allocation.backend.projeto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -72,7 +73,7 @@ public class CourseService {
 		course.setId(null);
 		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
 		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
-		return saveInternal(course);
+		return validationDepartment(course);
 	}
 
 	public Course update(Course course) {
@@ -93,10 +94,36 @@ public class CourseService {
 	public void deleteAll() {
 		courseRepository.deleteAllInBatch();
 	}
-
-	public void test() {
-		// ....//
+	
+	public Boolean comparandoNome(Course course) {
+		Optional<Course> nome = courseRepository.findByName(course.getName());
+		Boolean valoe = true;
+		if(nome != null) {
+			valoe = true; 
+		}else {
+			valoe = false; 
+		}
+		return valoe;
 	}
+	
+	public Boolean comparandoSigla(Course course) {
+		Optional<Course> nome = courseRepository.findBySigla(course.getSigla());
+		Boolean valoe = true;
+		if(nome != null) {
+			valoe = true; 
+		}else {
+			valoe = false; 
+		}
+		return valoe;
+	}
+
+	public Course validationDepartment(Course course) {
+		if(course.getName().length() < 2 && comparandoNome(course) && comparandoSigla(course)) {
+			throw new IllegalArgumentException("os dados tem algum erro");
+		}
+		
+		return saveInternal(course);
+}
 
 	private Course saveInternal(Course course) {
 		course = courseRepository.save(course);
