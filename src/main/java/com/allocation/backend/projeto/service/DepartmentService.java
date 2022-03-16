@@ -1,7 +1,6 @@
 package com.allocation.backend.projeto.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -52,7 +51,7 @@ public class DepartmentService {
 		departament.setSigla(departament.getSigla().replaceAll("[^a-z1-9 ]", ""));
 
 
-		return validationDepartment(departament);
+		return saveInternal(departament);
 	}
 
 	public Department update(Department departament) {
@@ -74,7 +73,7 @@ public class DepartmentService {
 		departmentRepository.deleteAllInBatch();
 	}
 	
-	public Boolean comparandoNome(Department department) {
+	/*public Boolean comparandoNome(Department department) {
 		Optional<Department> nome = departmentRepository.findByName(department.getName());
 		Boolean valoe = true;
 		if(nome != null) {
@@ -102,7 +101,7 @@ public class DepartmentService {
 			}
 			
 			return saveInternal(department);
-	}
+	}*/
 	
 	private Department saveInternal(Department department) {
         department = departmentRepository.save(department);

@@ -33,7 +33,7 @@ public class Department {
 	@Size(min = 2)
 	private String sigla;
 	
-	@Column(name = "area", unique = true, nullable = false)
+	@Column(name = "area", nullable = false)
 	private Area area;
 	
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)

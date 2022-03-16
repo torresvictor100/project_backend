@@ -54,8 +54,8 @@ public class ProfessorService {
 
 	public Professor save(Professor professor) {
 		professor.setId(null);
-		professor.setCpf(professor.getCpf().replaceAll("[^a-Za-zA-Z]", ""));
-		professor.setName(professor.getName().replaceAll("[^a-z1-9 ]", ""));
+		professor.setCpf(professor.getCpf());
+		professor.setName(professor.getName());
 		return saveInternal(professor);
 	}
 

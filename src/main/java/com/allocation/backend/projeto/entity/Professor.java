@@ -32,7 +32,7 @@ public class Professor {
 	@Column(name = "name", nullable = false, length = 30)
 	private String name;
 
-	@Column(name = "cpf", unique = true, nullable = false, length = 11)
+	@Column(name = "cpf", unique = true, nullable = false, length = 14)
 	@Size(min = 11)
 	private String cpf;
 	

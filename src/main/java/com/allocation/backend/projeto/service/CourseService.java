@@ -1,7 +1,6 @@
 package com.allocation.backend.projeto.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -73,7 +72,7 @@ public class CourseService {
 		course.setId(null);
 		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
 		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
-		return validationDepartment(course);
+		return saveInternal(course);
 	}
 
 	public Course update(Course course) {
@@ -95,7 +94,7 @@ public class CourseService {
 		courseRepository.deleteAllInBatch();
 	}
 	
-	public Boolean comparandoNome(Course course) {
+	/*public Boolean comparandoNome(Course course) {
 		Optional<Course> nome = courseRepository.findByName(course.getName());
 		Boolean valoe = true;
 		if(nome != null) {
@@ -123,7 +122,7 @@ public class CourseService {
 		}
 		
 		return saveInternal(course);
-}
+	}*/
 
 	private Course saveInternal(Course course) {
 		course = courseRepository.save(course);
