@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,6 +35,7 @@ public class Professor {
 
 	@Column(name = "cpf", unique = true, nullable = false, length = 14)
 	@Size(min = 11)
+	@CPF
 	private String cpf;
 	
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
