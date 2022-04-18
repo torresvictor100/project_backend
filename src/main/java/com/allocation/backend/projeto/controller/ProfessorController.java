@@ -134,7 +134,7 @@ public class ProfessorController {
 	@ApiResponses({ @ApiResponse(code = 204, message = "No Content") })
 	@DeleteMapping(path = "/{professor_id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<Void> deleteById(@PathVariable(name = "department_id") Long id) {
+	public ResponseEntity<Void> deleteById(@PathVariable(name = "professor_id") Long id) {
 		professorService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
