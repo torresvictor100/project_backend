@@ -70,8 +70,6 @@ public class CourseService {
 
 	public Course save(Course course) {
 		course.setId(null);
-		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
-		course.setName(course.getName().replaceAll("[^a-z1-9 ]", ""));
 		return saveInternal(course);
 	}
 

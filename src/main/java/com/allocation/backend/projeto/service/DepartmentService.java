@@ -47,8 +47,6 @@ public class DepartmentService {
 
 	public Department save(Department departament) {
 		departament.setId(null);
-		departament.setName(departament.getName().replaceAll("[^a-z1-9 ]", ""));
-		departament.setSigla(departament.getSigla().replaceAll("[^a-z1-9 ]", ""));
 
 
 		return saveInternal(departament);
