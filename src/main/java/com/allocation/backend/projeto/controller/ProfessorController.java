@@ -26,7 +26,8 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping(path = "/professors")
 public class ProfessorController {
-	ProfessorService professorService;
+	
+	private final ProfessorService professorService;
 
 	public ProfessorController(ProfessorService professorService) {
 		super();
@@ -48,7 +49,7 @@ public class ProfessorController {
 			@ApiResponse(code = 404, message = "Not Found") })
 	@GetMapping(path = "/{professor_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Professor> findById(@PathVariable(name = "department_id") Long id) {
+	public ResponseEntity<Professor> findById(@PathVariable(name = "professor_id") Long id) {
 		Professor professor = professorService.findById(id);
 		if (professor == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

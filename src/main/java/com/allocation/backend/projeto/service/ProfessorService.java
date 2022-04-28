@@ -90,8 +90,5 @@ public class ProfessorService {
 		professorRepository.deleteAllInBatch();
 	}
 
-	public void teste() {
-
-	}
 
 }
